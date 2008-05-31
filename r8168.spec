@@ -1,3 +1,4 @@
+#
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_without	kernel		# don't build kernel modules
@@ -9,7 +10,8 @@
 %endif
 
 %define		rel	1
-Summary:	Driver for RTL8111/8168B PCI Express Gigabit Ethernet controllers
+Summary:	Linux driver for RTL8111/8168B PCI Express Gigabit Ethernet controllers
+Summary(pl.UTF-8):	Linuksowy sterownik dla kart sieciowych RTL8111/8168B PCI Express Gigabit Ethernet
 Name:		r8168
 Version:	8.003.00
 Release:	%{rel}
@@ -28,9 +30,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Driver (Linux kernel module) for RTL8111/8168B PCI Express Gigabit
 Ethernet controllers.
 
+%description -l pl.UTF-8
+Sterownik (moduł jądra Linuksa) dla kart sieciowych RTL8111/8168B PCI
+Express Gigabit Ethernet.
+
 %package -n kernel%{_alt_kernel}-net-r8168
-Summary:	Linux driver for r8168
-Summary(pl.UTF-8):	Sterownik dla Linuksa do r8168
+Summary:	Linux kernel module for RTL8111/8168B PCI Express Gigabit Ethernet controllers
+Summary(pl.UTF-8):	Moduł jądra Linuksa dla kart sieciowych RTL8111/8168B PCI Express Gigabit Ethernet
 Release:	%{rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
@@ -43,7 +49,9 @@ Requires(postun):	%releq_kernel
 Driver (Linux kernel module) for RTL8111/8168B PCI Express Gigabit
 Ethernet controllers.
 
-This package contains Linux module.
+%description -n kernel%{_alt_kernel}-net-r8168 -l pl.UTF-8
+Sterownik (moduł jądra Linuksa) dla kart sieciowych RTL8111/8168B PCI
+Express Gigabit Ethernet.
 
 %prep
 %setup -q -n r8168-%{version}
