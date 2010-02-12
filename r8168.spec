@@ -1,5 +1,3 @@
-# TODO:
-# - does not build with 2.6.31
 #
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
@@ -28,7 +26,6 @@ Source0:	http://xatka.net/~z/PLD/%{name}-%{version}.tar.bz2
 %if %{with kernel}
 %if %{with dist_kernel}
 BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2
-BuildRequires:	kernel%{_alt_kernel}-module-build < 3:2.6.31
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.379
 %endif
@@ -87,6 +84,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with kernel}
 %files -n kernel%{_alt_kernel}-net-r8168
 %defattr(644,root,root,755)
-%doc readme
+%doc README
 /lib/modules/%{_kernel_ver}/kernel/drivers/net/*.ko*
 %endif
