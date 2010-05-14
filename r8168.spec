@@ -27,7 +27,7 @@ Source0:	http://execve.pl/PLD/%{name}-%{version}.tar.bz2
 # Source0-md5:	f73f91690ef18e76434cb083b10f3b44
 %if %{with kernel}
 %if %{with dist_kernel}
-BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2
+BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.33
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.379
 %endif
