@@ -1,3 +1,5 @@
+# NOTE:
+# - if you want to use it with ltm kernel, use LINUX_2_6_27 branch
 #
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
