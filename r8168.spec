@@ -9,7 +9,7 @@
 %undefine	with_dist_kernel
 %endif
 
-%define		rel	1
+%define		rel	2
 Summary:	Linux driver for RTL8111/8168B PCI Express Gigabit Ethernet controllers
 Summary(pl.UTF-8):	Linuksowy sterownik dla kart sieciowych RTL8111/8168B PCI Express Gigabit Ethernet
 Name:		r8168
@@ -26,6 +26,7 @@ Source0:	http://xatka.net/~z/PLD/%{name}-%{version}.tar.bz2
 %if %{with kernel}
 %if %{with dist_kernel}
 BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2
+BuildRequires:	kernel%{_alt_kernel}-module-build < 3:2.6.35
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.379
 %endif
