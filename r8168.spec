@@ -23,7 +23,7 @@ URL:		http://www.realtek.com.tw/
 # http://www.realtek.com.tw/downloads/downloadsView.aspx?Langid=1&PNid=13&PFid=5&Level=5&Conn=4&DownTypeID=3&GetDown=false
 # unfortunately this download is not DF-friendly.
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	f6934fc5df1dfb5fea82e4a310568890
+# Source0-md5:	5dc15a976950250b7b543876cc3350a8
 %if %{with kernel}
 %if %{with dist_kernel}
 BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.33
