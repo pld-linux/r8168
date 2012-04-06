@@ -24,6 +24,7 @@ URL:		http://www.realtek.com.tw/
 # unfortunately this download is not DF-friendly.
 Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	5dc15a976950250b7b543876cc3350a8
+Patch0:		r8168-kernel-3.3.patch
 %if %{with kernel}
 %if %{with dist_kernel}
 BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.33
@@ -61,6 +62,7 @@ Express Gigabit Ethernet.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %if %{with kernel}
