@@ -10,10 +10,11 @@
 %undefine	with_dist_kernel
 %endif
 
-%define		rel	1
+%define		rel	2
+%define		pname	r8168
 Summary:	Linux driver for RTL8111/8168B PCI Express Gigabit Ethernet controllers
 Summary(pl.UTF-8):	Linuksowy sterownik dla kart sieciowych RTL8111/8168B PCI Express Gigabit Ethernet
-Name:		r8168
+Name:		%{pname}%{_alt_kernel}
 Version:	8.029.00
 Release:	%{rel}
 License:	GPL
@@ -22,7 +23,7 @@ URL:		http://www.realtek.com.tw/
 # Check for new versions at
 # http://www.realtek.com.tw/downloads/downloadsView.aspx?Langid=1&PNid=13&PFid=5&Level=5&Conn=4&DownTypeID=3&GetDown=false
 # unfortunately this download is not DF-friendly.
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	%{pname}-%{version}.tar.bz2
 # Source0-md5:	5dc15a976950250b7b543876cc3350a8
 Patch0:		r8168-kernel-3.3.patch
 %if %{with kernel}
@@ -31,7 +32,7 @@ BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.33
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.379
 %endif
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{pname}-%{version}-root-%(id -u -n)
 
 %description
 Driver (Linux kernel module) for RTL8111/8168B PCI Express Gigabit
