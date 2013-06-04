@@ -25,6 +25,7 @@ URL:		http://www.realtek.com.tw/
 # unfortunately this download is not DF-friendly.
 Source0:	%{pname}-%{version}.tar.bz2
 # Source0-md5:	80b8d23e463e5408dced1b1377579dae
+Patch0:		linux-3.8.patch
 %if %{with kernel}
 %if %{with dist_kernel}
 BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.33
@@ -62,6 +63,7 @@ Express Gigabit Ethernet.
 
 %prep
 %setup -q -n %{pname}-%{version}
+%patch0 -p1
 
 %build
 %if %{with kernel}
