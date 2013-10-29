@@ -1,14 +1,6 @@
-# NOTE:
-# - if you want to use it with ltm kernel, use LINUX_2_6_27 branch
-#
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
-%bcond_without	kernel		# don't build kernel modules
 %bcond_with	verbose		# verbose build (V=1)
-
-%if %{without kernel}
-%undefine	with_dist_kernel
-%endif
 
 %define		rel	7
 %define		pname	r8168
@@ -26,12 +18,10 @@ URL:		http://www.realtek.com.tw/
 Source0:	%{pname}-%{version}.tar.bz2
 # Source0-md5:	a9a5b238f59cc30eefa5917d7f6b728e
 Patch0:		linux-3.10.patch
-%if %{with kernel}
 %if %{with dist_kernel}
 BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.33
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.379
-%endif
 BuildRoot:	%{tmpdir}/%{pname}-%{version}-root-%(id -u -n)
 
 %description
@@ -66,15 +56,11 @@ Express Gigabit Ethernet.
 %patch0 -p1
 
 %build
-%if %{with kernel}
 %build_kernel_modules -m r8168 -C src KERNELRELEASE=%{_kernel_ver}
-%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%if %{with kernel}
 %install_kernel_modules -m src/r8168 -d kernel/drivers/net
-%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -85,9 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun	-n kernel%{_alt_kernel}-net-r8168
 %depmod %{_kernel_ver}
 
-%if %{with kernel}
 %files -n kernel%{_alt_kernel}-net-r8168
 %defattr(644,root,root,755)
 %doc README
 /lib/modules/%{_kernel_ver}/kernel/drivers/net/*.ko*
-%endif
