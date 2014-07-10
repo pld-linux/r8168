@@ -1,0 +1,14 @@
+--- r8168-8.038.00/src/r8168_n.c~	2014-01-08 09:56:43.000000000 +0100
++++ r8168-8.038.00/src/r8168_n.c	2014-07-10 22:02:50.895076111 +0200
+@@ -19119,7 +19119,11 @@
+ {
+     struct rtl8168_private *tp = netdev_priv(dev);
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(3,15,0)
+     PREPARE_DELAYED_WORK(&tp->task, task);
++#else
++    INIT_DELAYED_WORK(&tp->task, task);
++#endif
+     schedule_delayed_work(&tp->task, 4);
+ }
+ #endif
