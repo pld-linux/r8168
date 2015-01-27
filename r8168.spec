@@ -1,5 +1,4 @@
 # Conditional build:
-%bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_with	verbose		# verbose build (V=1)
 
 %if "%{_alt_kernel}" != "%{nil}"
@@ -37,7 +36,7 @@ Source0:	%{pname}-%{version}.tar.bz2
 Patch0:		linux-3.15.patch
 Patch1:		linux-3.16.patch
 BuildRequires:	rpmbuild(macros) >= 1.678
-%{?with_dist_kernel:%{expand:%kbrs}}
+%{expand:%kbrs}
 BuildRoot:	%{tmpdir}/%{pname}-%{version}-root-%(id -u -n)
 
 %description
@@ -55,10 +54,8 @@ Summary(pl.UTF-8):	Moduł jądra Linuksa dla kart sieciowych RTL8111/8168B PCI E
 Release:	%{rel}@%{_kernel_ver_str}\
 Group:		Base/Kernel\
 Requires(post,postun):	/sbin/depmod\
-%if %{with dist_kernel}\
 %requires_releq_kernel\
 Requires(postun):	%releq_kernel\
-%endif\
 \
 %description -n kernel%{_alt_kernel}-net-r8168\
 Driver (Linux kernel module) for RTL8111/8168B PCI Express Gigabit\
