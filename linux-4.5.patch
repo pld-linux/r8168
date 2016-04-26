@@ -1,0 +1,14 @@
+--- r8168-8.041.01/src/r8168_n.c~	2015-10-06 08:33:04.000000000 +0200
++++ r8168-8.041.01/src/r8168_n.c	2016-04-26 07:48:15.696296115 +0200
+@@ -4209,7 +4209,11 @@
+         spin_lock_irqsave(&tp->lock, flags);
+         if (dev->mtu > ETH_DATA_LEN) {
+                 features &= ~NETIF_F_ALL_TSO;
++#if LINUX_VERSION_CODE < KERNEL_VERSION(4,5,0)
+                 features &= ~NETIF_F_ALL_CSUM;
++#else
++                features &= ~NETIF_F_CSUM_MASK;
++#endif
+         }
+         spin_unlock_irqrestore(&tp->lock, flags);
+ 
