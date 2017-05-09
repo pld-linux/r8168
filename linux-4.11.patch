@@ -1,0 +1,12 @@
+--- r8168-8.042.00/src/r8168_n.c~	2017-05-10 00:51:08.000000000 +0200
++++ r8168-8.042.00/src/r8168_n.c	2017-05-10 00:51:48.529625066 +0200
+@@ -25251,7 +25251,9 @@
+                         if (rtl8168_rx_vlan_skb(tp, desc, skb) < 0)
+                                 rtl8168_rx_skb(tp, skb);
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(4,11,0)
+                         dev->last_rx = jiffies;
++#endif
+                         RTLDEV->stats.rx_bytes += pkt_size;
+                         RTLDEV->stats.rx_packets++;
+                 }
