@@ -22,6 +22,7 @@ Source0:	%{pname}-%{version}.tar.bz2
 Patch0:		kernel-5.17.patch
 Patch1:		kernel-5.18.patch
 Patch2:		kernel-5.19.patch
+Patch3:		kernel-6.1.patch
 BuildRequires:	rpmbuild(macros) >= 1.701
 %{expand:%buildrequires_kernel kernel%%{_alt_kernel}-module-build >= 3:2.6.20.2}
 BuildRoot:	%{tmpdir}/%{pname}-%{version}-root-%(id -u -n)
@@ -76,6 +77,7 @@ Express Gigabit Ethernet.\
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{expand:%build_kernel_packages}
