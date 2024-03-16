@@ -19,6 +19,7 @@ URL:		http://www.realtek.com.tw/
 # unfortunately this download is not DF-friendly.
 Source0:	%{pname}-%{version}.tar.bz2
 # Source0-md5:	31d41df8c9234d187d42b881a087d7df
+Patch0:		kernel-strcpy.patch
 BuildRequires:	rpmbuild(macros) >= 1.701
 %{expand:%buildrequires_kernel kernel%%{_alt_kernel}-module-build >= 3:2.6.20.2}
 BuildRoot:	%{tmpdir}/%{pname}-%{version}-root-%(id -u -n)
@@ -70,6 +71,7 @@ Express Gigabit Ethernet.\
 
 %prep
 %setup -q -n %{pname}-%{version}
+%patch0 -p1
 
 %build
 %{expand:%build_kernel_packages}
