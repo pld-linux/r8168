@@ -4,7 +4,7 @@
 # nothing to be placed to debuginfo package
 %define		_enable_debug_packages	0
 
-%define		rel	1
+%define		rel	2
 %define		pname	r8168
 Summary:	Linux driver for RTL8111/8168B PCI Express Gigabit Ethernet controllers
 Summary(pl.UTF-8):	Linuksowy sterownik dla kart sieciowych RTL8111/8168B PCI Express Gigabit Ethernet
@@ -65,13 +65,14 @@ Express Gigabit Ethernet.\
 %define build_kernel_pkg()\
 %build_kernel_modules -m r8168 -C src KERNELRELEASE=%{_kernel_ver}\
 %install_kernel_modules -D installed -m src/r8168 -d kernel/drivers/net\
+rm -rf $RPM_BUILD_ROOT
 %{nil}
 
 %{expand:%create_kernel_packages}
 
 %prep
 %setup -q -n %{pname}-%{version}
-%patch0 -p1
+%patch -P 0 -p1
 
 %build
 %{expand:%build_kernel_packages}
